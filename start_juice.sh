@@ -22,7 +22,6 @@ resolve_deps juicefs "https://juicefs.com/docs/community/installation/"
 echo -e "\n Creating cache DB with name ${JUICE_LOCAL_NAME} \n"
 juicefs format sqlite3://${JUICE_LOCAL_NAME}.db ${JUICE_LOCAL_NAME}
 
-
 echo -e "\nMounting cache at path ${JUICE_LOCAL_PATH} \n"
 juicefs mount sqlite3://${JUICE_LOCAL_NAME}.db $JUICE_LOCAL_PATH || \
 echo -e "\n A local storage file for JUICE_LOCAL_NAME=$JUICE_LOCAL_NAME already exists \n" && \

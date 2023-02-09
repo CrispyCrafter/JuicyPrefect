@@ -22,13 +22,11 @@ To run this repo perform the following steps:
 
     `pip install -r requirements.txt`
 1. Startup JuiceFS
-```
-./start_juice.sh
-```
+
+    `./start_juice.sh`
 1. In virtualenv run:
-```
-source .env && python main -input 1 2 3
-```
+
+    `source .env && python main -input 1 2 3`
 
 The prefect script accepts space seperated inputs that are cast to a list. 
 These input are used to generate a hash key. The function is artificially halted for three seconds when run for the first time. After that a cache should be used. 
@@ -58,8 +56,6 @@ Importantly, by using JuiceFS, the filesystem can be abstacted to either a local
 ## Prefect Orion
 To monitor and review prefect runs locally, the following script can be executed:
 
-```
- source .env && python main 
-```
+`source .env && python main `
 
 
