@@ -31,7 +31,7 @@ To run this repo perform the following steps:
 The prefect script accepts space seperated inputs that are cast to a list. 
 These input are used to generate a hash key. The function is artificially halted for three seconds when run for the first time. After that a cache should be used. 
 
-Notably JuiceFS is not needed for this example to run, in fact everything should run perfectly well without JuiceFS, as expected. The big benefit here is that in theory the mounted files system should perform exactly like a local path, regardless of where the scipt gets executed. 
+Notably JuiceFS is not needed for this example to run, in fact everything should run perfectly well without JuiceFS, as expected. The big benefit here is that in theory the mounted files system should perform exactly like a local path, regardless of where the script gets executed. 
 
 The caveat here is that a substantial amount of opionated configuration for both Prefect and JuiceFS is being handled in the `.env` file. This can be gradually modified to hosted or local configurations based on the runtime requirements.
  
