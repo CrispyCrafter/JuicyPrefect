@@ -24,9 +24,12 @@ To run this repo perform the following steps:
 1. Startup JuiceFS
 
     `./start_juice.sh`
+    
 1. In virtualenv run:
 
     `source .env && python main.py -input 1 2 3`
+
+** Juice can also use an S3 backend by sourcing your relevant S3 credentials and running  `./start_juice.sh -c s3`
 
 The prefect script accepts space seperated inputs that are cast to a list. 
 These input are used to generate a hash key. The function is artificially halted for three seconds when run for the first time. After that a cache should be used. 
