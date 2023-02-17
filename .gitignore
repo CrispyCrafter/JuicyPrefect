@@ -1,0 +1,14 @@
+# Local Secrets
+.aws.env
+
+# Postgres Volume
+postgres-data
+
+# SQLite Files
+*.db
+
+# Notebook debugging 
+*.ipynb_checkpoints
+*.ipynb
+*.parquet
+*.csv
