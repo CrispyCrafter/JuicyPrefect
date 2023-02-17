@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+  postgres:
+    command:
+      - postgres
+      - -c
+      - max_connections=150
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+        - ./postgres-data:/var/lib/postgresql/data
+        - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+        - '${POSTGRES_LOCAL_PORT}:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d ${PREFECT_POSTGRES_DB}", "-U ${POSTGRES_USER}"]
+      interval: 5s
+      retries: 60
+      start_period: 2s
+      timeout: 2s
+    image: postgres:${POSTGRES_IMAGE_VERSION}
+    restart: always
+    
+  orion:
+    restart: always
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile
+    command: prefect server start
+    ports:
+      - 4200:4200
+    depends_on: 
+      postgres:
+          condition: service_healthy
+    volumes:
+      - prefect_data:/root/.prefect
+      - prefect_flows:/flows
+    environment:
+      PREFECT_ORION_API_HOST: 0.0.0.0
+      PREFECT_ORION_DATABASE_CONNECTION_URL: ${DOCKER_INTERNAL_CONNECTION_URL}
+      PREFECT_ORION_ANALYTICS_ENABLED: "false"
+      PREFECT_LOGGING_SERVER_LEVEL: WARNING
+      PREFECT_API_URL: ${PREFECT_API_URL}
+
+volumes:
+  postgres:
+  prefect_data:
+  prefect_flows:

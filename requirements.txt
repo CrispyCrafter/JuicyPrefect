@@ -1,1 +1,2 @@
-prefect==2.7.12
+prefect==2.8.1
+psycopg2-binary==2.9.3

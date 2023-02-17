@@ -20,7 +20,7 @@ def cache_key_from_sum(context, parameters):
 @task(cache_key_fn=cache_key_from_sum, cache_expiration=timedelta(days=7))
 def cached_task(nums):
     print('running an expensive operation')
-    time.sleep(3)
+    time.sleep(10)
     return sum(nums)
 
 @flow
